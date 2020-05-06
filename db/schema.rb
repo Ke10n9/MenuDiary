@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_121425) do
+ActiveRecord::Schema.define(version: 2020_05_04_114306) do
 
   create_table "dishes", force: :cascade do |t|
     t.string "name"
@@ -20,15 +20,9 @@ ActiveRecord::Schema.define(version: 2020_05_04_121425) do
     t.index ["user_id"], name: "index_dishes_on_user_id"
   end
 
-  create_table "eating_times", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "meals", force: :cascade do |t|
     t.date "date"
-    t.integer "eating_time_id"
+    t.string "eating_time"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -36,13 +30,11 @@ ActiveRecord::Schema.define(version: 2020_05_04_121425) do
   end
 
   create_table "menus", force: :cascade do |t|
-    t.integer "meal_id"
     t.integer "dish_id"
-    t.integer "user_id"
+    t.integer "meal_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["meal_id"], name: "index_menus_on_meal_id"
-    t.index ["user_id"], name: "index_menus_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

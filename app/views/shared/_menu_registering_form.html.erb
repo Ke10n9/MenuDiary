@@ -1,0 +1,16 @@
+<%= form_for @meal do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.label :date, "日付" %>
+    <%= f.date_field :date %>
+    <br>
+    <%= f.label :eating_time, "朝昼夕" %>
+    <%= f.select :eating_time, [["1.朝食", "1.朝食"], ["2.昼食", "2.昼食"], ["3.夕食", "3.夕食"]] %>
+    <br>
+    <%= fields_for @dish do |i| %>
+      <%= i.label :name, "品名" %>
+      <%= i.text_field :name %>
+    <% end %>
+  </div>
+  <%= f.submit "送信", class: "btn btn-primary" %>
+<% end %>
