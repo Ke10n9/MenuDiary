@@ -7,7 +7,15 @@
       <section class="micropost_form">
         <%= render 'shared/menu_registering_form' %>
       </section>
+      <% if current_user.meals.any? %>
+        <ol class="microposts">
+          <%= render @meals %>
+        </ol>
+        <%= will_paginate @meals %>
+      <% end %>
     </aside>
+  </div>
+  <div class="col-md-8">
   </div>
 <% else %>
   <div class="center jumbotron">

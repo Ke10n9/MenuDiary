@@ -1,0 +1,10 @@
+<li id="meal-<%= meal.id %>">
+  <span class="content">
+    <%= meal.date %>
+    <%= meal.eating_time %>
+    <br>
+    <% meal.dishes.each do |t| %>
+      ・<%= t.name %><br>
+    <% end %>
+  </span>
+</li>
