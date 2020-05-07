@@ -6,5 +6,7 @@
     <% meal.dishes.each do |t| %>
       ・<%= t.name %><br>
     <% end %>
+    <%= link_to "delete", meal, method: :delete,
+                        data: { confirm: "本当に削除して良いですか？" } %>
   </span>
 </li>

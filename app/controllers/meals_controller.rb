@@ -17,6 +17,14 @@ class MealsController < ApplicationController
   end
 
   def destroy
+    @meal = current_user.meals.find(params[:id])
+    t_menus = Menu.where(meal_id: params[:id])
+    t_menus.each do |t|
+      if Menu.where.not(meal_id: @meal.id).find_by(dish_id: t.dish_id).nil?
+        Dish.find(t.dish_id).destroy
+      end
+    end
+    @meal.destroy
   end
 
   private
