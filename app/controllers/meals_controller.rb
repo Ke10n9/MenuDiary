@@ -25,6 +25,8 @@ class MealsController < ApplicationController
       end
     end
     @meal.destroy
+    flash[:success] = "メニューを削除しました。"
+    redirect_to request.referrer || root_url
   end
 
   private
