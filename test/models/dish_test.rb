@@ -4,7 +4,7 @@ class DishTest < ActiveSupport::TestCase
 
   def setup
     @user = users(:michael)
-    @dish = @user.dishes.build(name: "鮭") #dishesとusersの関連付けが必要
+    @dish = @user.dishes.build(name: "鮭")
   end
 
   test "should be valid" do
@@ -17,7 +17,7 @@ class DishTest < ActiveSupport::TestCase
   end
 
   test "name should be present" do
-    @dish.name = nil
+    @dish.name = " "
     assert_not @dish.valid?
   end
 

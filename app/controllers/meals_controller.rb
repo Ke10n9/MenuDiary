@@ -9,9 +9,11 @@ class MealsController < ApplicationController
     if @meal.save && @dish.save
       @menu = @meal.menus.build(dish_id: @dish.id)
       @menu.save
+      @p_date = Meal.new(meal_params)
       flash[:success] = "メニューを登録しました。"
       redirect_to root_url
     else
+      @meals = current_user.meals.paginate(page: params[:page])
       render 'static_pages/home'
     end
   end
@@ -32,7 +34,7 @@ class MealsController < ApplicationController
   private
 
     def meal_params
-      params.require(:meal).permit(:date, :eating_time)
+      params.require(:meal).permit(:date, :eating_time_order)
     end
 
     def dish_params

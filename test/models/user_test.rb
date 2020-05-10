@@ -78,7 +78,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "associated dishes should be destroyed" do
     @user.save
-    @user.dishes.create!(name: "魚")
+    @user.dishes.create!(name: dishes(:one).name)
     assert_difference 'Dish.count', -1 do
       @user.destroy
     end
@@ -86,16 +86,10 @@ class UserTest < ActiveSupport::TestCase
 
   test "associated meals should be destroyed" do
     @user.save
-    @user.meals.create!(date: "2020/5/4", time: 2)
-    assert_difference 'Meal.count', -1 do
-      @user.destroy
-    end
-  end
-
-  test "associated menus should be destroyed" do
-    @user.save
-    @user.menus.create!(meal_id: 1, dish_id: 1)
-    assert_difference 'Menu.count', -1 do
+    @meal = @user.meals.create!(date: meals(:one).date,
+                                eating_time_order: meals(:one).eating_time_order)
+    @meal.menus.create!(dish_id: dishes(:one).id)
+    assert_difference ['Meal.count', 'Menu.count'], -1 do
       @user.destroy
     end
   end

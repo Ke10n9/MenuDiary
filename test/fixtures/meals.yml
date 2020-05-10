@@ -1,11 +1,15 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  date: 2020-05-04
-  time: MyString
-  user: one
+  date: 2020/5/4
+  eating_time_order: 3
 
 two:
-  date: 2020-05-04
-  time: MyString
-  user: two
+  date: 2020/5/3
+  eating_time_order: 2
+
+three:
+  date: 2020/5/10
+  eating_time_order: 2
+
+most_recent:
+  date: 2020/5/10
+  eating_time_order: 3

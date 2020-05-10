@@ -3,8 +3,7 @@ require 'test_helper'
 class MenuTest < ActiveSupport::TestCase
 
   def setup
-    @user = users(:michael)
-    @menu = @user.menus.build(meal_id: 1, dish_id: 1)
+    @menu = Menu.new(meal_id: meals(:one).id, dish_id: dishes(:one).id)
   end
 
   test "should be valid" do

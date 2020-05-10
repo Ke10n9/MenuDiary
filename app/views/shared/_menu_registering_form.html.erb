@@ -1,16 +1,17 @@
-<%= form_for @meal do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.label :date, "日付" %>
-    <%= f.date_field :date %>
-    <br>
-    <%= f.label :eating_time, "朝昼夕" %>
-    <%= f.select :eating_time, [["1.朝食", "1.朝食"], ["2.昼食", "2.昼食"], ["3.夕食", "3.夕食"]] %>
-    <br>
-    <%= fields_for @dish do |i| %>
+<%= form_for(@meal, url: meals_path, method: :post) do |f| %>
+  <%= fields_for @dish do |i| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= render 'shared/error_messages', object: i.object %>
+    <div class="field">
+      <%= f.label :date, "日付" %>
+      <%= f.date_field :date, value: Time.now.strftime("%Y-%m-%d") %>
+      <br>
+      <%= f.label :eating_time_order, "朝昼夕" %>
+      <%= f.select :eating_time_order, [["朝食", 1], ["昼食", 2], ["夕食", 3]] %>
+      <br>
       <%= i.label :name, "品名" %>
       <%= i.text_field :name %>
-    <% end %>
-  </div>
-  <%= f.submit "送信", class: "btn btn-primary" %>
+    </div>
+    <%= f.submit "送信", class: "btn btn-primary" %>
+  <% end %>
 <% end %>
