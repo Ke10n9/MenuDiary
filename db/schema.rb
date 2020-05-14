@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2020_05_10_114306) do
 
   create_table "meals", force: :cascade do |t|
     t.date "date"
-    t.integer "eating_time_order"
+    t.integer "eating_time_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,5 +1,7 @@
 class MealsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
+  before_action :correct_user, only: :destroy
+
 
   def create
     @meal = Meal.find_by(meal_params)
@@ -19,7 +21,7 @@ class MealsController < ApplicationController
   end
 
   def destroy
-    @meal = current_user.meals.find(params[:id])
+    # @meal = current_user.meals.find(params[:id])
     t_menus = Menu.where(meal_id: params[:id])
     t_menus.each do |t|
       if Menu.where.not(meal_id: @meal.id).find_by(dish_id: t.dish_id).nil?
@@ -34,11 +36,16 @@ class MealsController < ApplicationController
   private
 
     def meal_params
-      params.require(:meal).permit(:date, :eating_time_order)
+      params.require(:meal).permit(:date, :eating_time_id)
     end
 
     def dish_params
       params.require(:dish).permit(:name)
+    end
+
+    def correct_user
+      @meal = current_user.meals.find_by(id:params[:id])
+      redirect_to root_url if @meal.nil?
     end
 
 end

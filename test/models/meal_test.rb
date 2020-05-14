@@ -4,7 +4,7 @@ class MealTest < ActiveSupport::TestCase
 
   def setup
     @user = users(:michael)
-    @meal = @user.meals.build(date: "2020/5/4", eating_time_order: 3)
+    @meal = @user.meals.build(date: "2020/5/4", eating_time_order: eating_times(:dinner).order)
   end
 
   test "should be valid" do
@@ -22,7 +22,6 @@ class MealTest < ActiveSupport::TestCase
   end
 
   test 'associated menus should be destroyed' do
-    @user.save
     @meal.save
     @meal.menus.create!(dish_id: dishes(:one).id)
     assert_difference 'Menu.count', -1 do

@@ -3,7 +3,7 @@ require 'test_helper'
 class EatingTimeTest < ActiveSupport::TestCase
 
   def setup
-    @eating_time = EatingTime.new(name: "夕食", order: 3)
+    @eating_time = eating_times(:breakfast)
     @invalid_one = EatingTime.new(name: "夕食", order: 2)
     @invalid_two = EatingTime.new(name: "昼食", order: 3)
   end
