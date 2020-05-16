@@ -19,10 +19,10 @@ class ActiveSupport::TestCase
     session[:user_id] = user.id
   end
 
-  def to_eating_time_name(eating_time)
-    eating_time_array = ["朝食", "昼食", "夕食"]
-    return eating_time_array[eating_time]
-  end
+  # def to_eating_time_name(eating_time)
+  #   eating_time_array = ["朝食", "昼食", "夕食"]
+  #   return eating_time_array[eating_time-1]
+  # end
 end
 
 class ActionDispatch::IntegrationTest

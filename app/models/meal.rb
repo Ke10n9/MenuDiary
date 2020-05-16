@@ -12,6 +12,6 @@ class Meal < ApplicationRecord
     # @eating_time_hash　= { 1 => "朝食", 2 => "昼食", 3 => "夕食" }
     # return @eating_time_hash[eating_time]
     @eating_time_array = ["朝食", "昼食", "夕食"]
-    return @eating_time_array[self.eating_time]
+    return @eating_time_array[self.eating_time-1]
   end
 end
