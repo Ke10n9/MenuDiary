@@ -8,7 +8,7 @@
         <%= render 'shared/menu_registering_form' %>
       </section>
     </aside>
-  </div>
+  <!-- </div> -->
     <div class="col-md-8">
       <% if current_user.meals.any? %>
         <ol class="microposts">
@@ -17,7 +17,7 @@
         <%= will_paginate @meals %>
       <% end %>
     </div>
-  <!-- </div> -->
+  </div>
 <% else %>
   <div class="center jumbotron">
     <h1>Menu Diary</h1>
