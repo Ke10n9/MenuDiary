@@ -20,16 +20,9 @@ ActiveRecord::Schema.define(version: 2020_05_10_114306) do
     t.index ["user_id"], name: "index_dishes_on_user_id"
   end
 
-  create_table "eating_times", force: :cascade do |t|
-    t.string "name"
-    t.integer "order"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "meals", force: :cascade do |t|
     t.date "date"
-    t.integer "eating_time_id"
+    t.integer "eating_time"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -41,7 +34,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_114306) do
     t.integer "dish_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["meal_id"], name: "index_menus_on_meal_id"
   end
 
   create_table "users", force: :cascade do |t|

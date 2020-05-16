@@ -4,7 +4,7 @@ class MealTest < ActiveSupport::TestCase
 
   def setup
     @user = users(:michael)
-    @meal = @user.meals.build(date: "2020/5/4", eating_time_order: eating_times(:dinner).order)
+    @meal = @user.meals.build(date: "2020/5/4", eating_time: 3)
   end
 
   test "should be valid" do
@@ -16,8 +16,8 @@ class MealTest < ActiveSupport::TestCase
     assert_not @meal.valid?
   end
 
-  test "eating time order should be present" do
-    @meal.eating_time_order = nil
+  test "eating time should be present" do
+    @meal.eating_time = nil
     assert_not @meal.valid?
   end
 

@@ -1,7 +1,7 @@
 <li id="meal-<%= meal.id %>">
   <span class="content">
     <%= meal.date %>
-    <%= EatingTime.find_by(id: meal.eating_time_id).name %>
+    <%= meal.eating_time_name %>
     <br>
     <% meal.dishes.each do |t| %>
       ・<%= t.name %><br>

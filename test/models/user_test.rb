@@ -87,7 +87,7 @@ class UserTest < ActiveSupport::TestCase
   test "associated meals should be destroyed" do
     @user.save
     @meal = @user.meals.create!(date: meals(:one).date,
-                                eating_time_order: meals(:one).eating_time_order)
+                                eating_time: meals(:one).eating_time)
     @meal.menus.create!(dish_id: dishes(:one).id)
     assert_difference ['Meal.count', 'Menu.count'], -1 do
       @user.destroy

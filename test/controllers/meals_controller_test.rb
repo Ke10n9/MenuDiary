@@ -9,7 +9,7 @@ class MealsControllerTest < ActionDispatch::IntegrationTest
   test "should redirect create when not logged in" do
     assert_no_difference ['Meal.count', 'Menu.count', 'Dish.count'], 1 do
       post meals_path, params: { meal: { date: "2020/5/12",
-                                        eating_time_order: 3 },
+                                        eating_time: 3 },
                                 dish: { name: "豚肉" } }
     end
     assert_redirected_to login_url

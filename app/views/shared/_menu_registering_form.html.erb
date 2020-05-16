@@ -6,10 +6,8 @@
       <%= f.label :date, "日付" %>
       <%= f.date_field :date, value: Time.now.strftime("%Y-%m-%d") %>
       <br>
-      <%= f.label :eating_time_id, "朝昼夕" %>
-      <%= f.select :eating_time_id, [["朝食", EatingTime.find_by(name: "朝食").id],
-                                    ["昼食", EatingTime.find_by(name: "昼食").id],
-                                    ["夕食", EatingTime.find_by(name: "夕食").id]] %>
+      <%= f.label :eating_time, "朝昼夕" %>
+      <%= f.select :eating_time, [["朝食", 1], ["昼食", 2], ["夕食", 3]] %>
       <br>
       <%= i.label :name, "品名" %>
       <%= i.text_field :name %>

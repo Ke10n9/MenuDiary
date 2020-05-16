@@ -1,31 +1,31 @@
 one:
   date: 2020/5/4
-  eating_time_order: 3
+  eating_time: 3
   user: michael
 
 two:
   date: 2020/5/3
-  eating_time_order: 2
+  eating_time: 2
   user: michael
 
 three:
   date: 2020/5/10
-  eating_time_order: 2
+  eating_time: 2
   user: michael
 
 most_recent:
   date: 2020/5/10
-  eating_time_order: 3
+  eating_time: 3
   user: michael
 
 archer_meal:
   date: 2020/5/1
-  eating_time_order: 1
+  eating_time: 3
   user: archer
 
 <% 30.times do |n| %>
 meal_<%= n %>:
   date: <%= Time.new(2020, 5, 9)-n %>
-  eating_time_order: 3
+  eating_time: 3
   user: michael
 <% end %>
