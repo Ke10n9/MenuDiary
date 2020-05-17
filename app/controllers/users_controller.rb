@@ -4,12 +4,11 @@ class UsersController < ApplicationController
   before_action :admin_user, only: :destroy
 
   def index  #管理者のみ参照可能にしたい
-    @users = User.where(activated: true).paginate(page: params[:page])
+    @users = User.paginate(page: params[:page])
   end
 
   def show
     @user = User.find(params[:id])
-    redirect_to root_url and return unless @user.activated?
   end
 
   def new
@@ -19,8 +18,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      # @user.send_activation_email  #app/models/user.rb
-      # flash[:info] = "Please check your email to activate your account."
       log_in @user
       flash[:info] = "ユーザー登録が完了しました。"
       redirect_to root_url
@@ -35,7 +32,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = "設定の変更が完了しました。"
       redirect_to @user
     else
       render 'edit'
@@ -51,8 +48,6 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      # params.require(:user).permit(:name, :email, :password,
-      #                               :password_confirmation)
       params.require(:user).permit(:name, :password, :password_confirmation)
     end
 

@@ -18,18 +18,13 @@ class ActiveSupport::TestCase
   def log_in_as(user)
     session[:user_id] = user.id
   end
-
-  # def to_eating_time_name(eating_time)
-  #   eating_time_array = ["朝食", "昼食", "夕食"]
-  #   return eating_time_array[eating_time-1]
-  # end
 end
 
 class ActionDispatch::IntegrationTest
 
   # テストユーザーとしてログインする
   def log_in_as(user, password: 'password', remember_me: '1')
-    post login_path, params: { session: { email: user.email,
+    post login_path, params: { session: { name: user.name,
                                           password: password,
                                           remember_me: remember_me } }
   end
