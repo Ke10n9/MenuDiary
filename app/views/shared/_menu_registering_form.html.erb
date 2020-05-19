@@ -2,22 +2,19 @@
   <%= fields_for @dish do |i| %>
     <%= render 'shared/error_messages', object: f.object %>
     <%= render 'shared/error_messages', object: i.object %>
-    <!-- <div class="field"> -->
+    <div class="field">
       <div class="col-md-12 col-xs-6">
-        <%= f.label :date, "日付" %>
         <%= f.date_field :date, value: Time.now.strftime("%Y-%m-%d") %>
       </div>
       <div class="col-md-12 col-xs-6">
-        <%= f.label :eating_time, "朝昼夕" %>
         <%= f.select :eating_time, [["朝食", 1], ["昼食", 2], ["夕食", 3]] %>
       </div>
-      <div class="col-xs-12">
-        <%= i.label :name, "品名" %>
-        <%= i.text_field :name %>
+      <div class="col-md-12 col-xs-12">
+        <%= i.text_field :name, placeholder:"品名" %>
       </div>
-    <!-- </div> -->
-      <div class="col-xs-12">
-    <%= f.submit "送信", class: "btn btn-primary" %>
+    </div>
+      <div class="pull-right col-xs-5">
+        <%= f.submit "送信", class: "btn btn-primary" %>
       </div>
   <% end %>
 <% end %>
