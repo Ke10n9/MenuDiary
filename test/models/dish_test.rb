@@ -21,8 +21,8 @@ class DishTest < ActiveSupport::TestCase
     assert_not @dish.valid?
   end
 
-  test "name should be at most 20 characters" do
-    @dish.name = "a" * 21
+  test "name should be at most 30 characters" do
+    @dish.name = "a" * 31
     assert_not @dish.valid?
   end
 end
