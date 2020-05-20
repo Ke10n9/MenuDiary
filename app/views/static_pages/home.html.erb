@@ -1,6 +1,5 @@
 <% if logged_in? %>
   <div class="row">
-    <aside class="col-xs-12">
     <aside class="col-md-4 col-sm-4 col-xs-12">
       <section class="user_info">
         <%= render 'shared/user_info' %>
@@ -9,15 +8,15 @@
         <%= render 'shared/menu_registering_form' %>
       </section>
     </aside>
-  <!-- </div> -->
     <div class="col-xs-12">
-    <div class="col-md-8 col-sm-8 col-xs-12">
-      <% if current_user.meals.any? %>
-        <ol class="menus">
-          <%= render @meals %>
-        </ol>
-        <%= will_paginate @meals %>
-      <% end %>
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <% if current_user.meals.any? %>
+          <ol class="menus">
+            <%= render @meals %>
+          </ol>
+          <%= will_paginate @meals %>
+        <% end %>
+      </div>
     </div>
   </div>
 <% else %>
