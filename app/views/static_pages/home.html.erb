@@ -1,17 +1,25 @@
 <% if logged_in? %>
   <div class="row">
+<<<<<<< HEAD
     <aside class="col-xs-12">
+=======
+    <aside class="col-md-4 col-sm-4 col-xs-12">
+>>>>>>> layout-for-smartphone
       <section class="user_info">
         <%= render 'shared/user_info' %>
       </section>
-      <section class="micropost_form">
+      <section class="menu_form">
         <%= render 'shared/menu_registering_form' %>
       </section>
     </aside>
   <!-- </div> -->
+<<<<<<< HEAD
     <div class="col-xs-12">
+=======
+    <div class="col-md-8 col-sm-8 col-xs-12">
+>>>>>>> layout-for-smartphone
       <% if current_user.meals.any? %>
-        <ol class="microposts">
+        <ol class="menus">
           <%= render @meals %>
         </ol>
         <%= will_paginate @meals %>
