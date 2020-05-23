@@ -215,10 +215,28 @@ input {
   }
   .content {
     display: block;
-    margin-left: 60px;
-    img {
-      display: block;
-      padding: 5px 0;
+    .meal-zone{
+      padding: 0 5px;
+    }
+    .header-meal{
+      padding: 0;
+      border: 1px solid #ccc;
+      border-bottom: transparent;
+      border-right: transparent;
+    }
+    .one-date{
+      padding: 0;
+      height: 120px;
+      border: 1px solid #ccc;
+      border-bottom: transparent;
+      border-right: transparent;
+    }
+    .one-meal{
+      padding: 0;
+      height: 120px;
+      border: 1px solid #ccc;
+      border-bottom: transparent;
+      border-right: transparent;
     }
   }
   .timestamp {
