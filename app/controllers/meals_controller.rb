@@ -1,6 +1,6 @@
 class MealsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
-  before_action :correct_user, only: :destroy
+  before_action :logged_in_user, only: [:create, :destroy, :edit, :update]
+  before_action :correct_user, only: [:destroy]
 
 
   def create
@@ -33,6 +33,43 @@ class MealsController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
+  def edit
+    @meal = Meal.find(params[:id])
+    @dishes = @meal.dishes.all
+  end
+
+  def update
+    @meal = Meal.find_by(meal_params)
+    err = 0
+    @dishes = dishes_params.keys.each do |dishes_id|
+      menu = Menu.find_by(meal_id: @meal.id, dish_id: dishes_id)
+      dish = Dish.find(dishes_id)
+      dish_menus = Menu.where(dish_id: dishes_id)
+      if dish_menus.count == 1
+        unless dish.update_attributes(dishes_params[dishes_id])
+          err += 1
+        end
+      elsif dish_menus.count > 1
+        new_dish = Dish.find_by(name: dishes_params[dishes_id][:name])
+        new_dish = current_user.dishes.build(dishes_params[dishes_id]) if new_dish.nil?
+        if new_dish.save
+          menu.dish_id = new_dish.id
+          menu.save
+        else
+          err += 1
+        end
+      end
+    end
+    unless err == 0
+      flash[:danger] = "#{err}個のエラーがありました。エラー箇所は元に戻します。"
+    else
+      # flash[:danger] = "#{err}つのエラーがありました。エラー箇所は元に戻します。"
+      flash[:success] = "メニューは正常に編集されました。"
+    end
+    redirect_to root_url
+  end
+
+
   private
 
     def meal_params
@@ -41,6 +78,10 @@ class MealsController < ApplicationController
 
     def dish_params
       params.require(:dish).permit(:name)
+    end
+
+    def dishes_params
+      params.permit(dish: :name)[:dish]
     end
 
     def correct_user

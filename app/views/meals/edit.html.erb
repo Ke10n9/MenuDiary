@@ -1,0 +1,30 @@
+<div class="row">
+  <aside class="col-md-4 col-xs-12">
+    <section class="user_info">
+      <%= render 'shared/user_info' %>
+    </section>
+    <section class="menu_form">
+      <%= form_for @meal do |f| %>
+        <% @dishes.each do |dish| %>
+
+          <%= fields_for "dish[]", dish do |di| %>
+            <%= render 'shared/error_messages', object: di.object %>
+            <%#= render 'shared/error_messages', object: i.object %>
+            <div class="field">
+              <div class="col-md-12 col-xs-8">
+                <%= f.hidden_field :date %>
+              </div>
+              <div class="col-md-12 col-xs-4">
+                <%= f.hidden_field :eating_time %>
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <%= di.text_field :name, value: dish.name %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <div class="pull-right col-xs-5">
+          <%= f.submit "送信", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </section>
