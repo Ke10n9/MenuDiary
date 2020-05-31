@@ -21,7 +21,6 @@ class MealsController < ApplicationController
   end
 
   def destroy
-    # @meal = current_user.meals.find(params[:id])
     t_menus = Menu.where(meal_id: params[:id])
     t_menus.each do |t|
       if Menu.where.not(meal_id: @meal.id).find_by(dish_id: t.dish_id).nil?
@@ -63,7 +62,6 @@ class MealsController < ApplicationController
     unless err == 0
       flash[:danger] = "#{err}個のエラーがありました。エラー箇所は元に戻します。"
     else
-      # flash[:danger] = "#{err}つのエラーがありました。エラー箇所は元に戻します。"
       flash[:success] = "メニューは正常に編集されました。"
     end
     redirect_to root_url
