@@ -226,17 +226,23 @@ input {
     }
     .one-date{
       padding: 0;
-      height: 120px;
+      height: 150px;
       border: 1px solid #ccc;
       border-bottom: transparent;
       border-right: transparent;
     }
     .one-meal{
-      padding: 0;
-      height: 120px;
+      padding: 1% 1%;
+      height: 150px;
       border: 1px solid #ccc;
       border-bottom: transparent;
       border-right: transparent;
+      position: relative;
+      .meal-edit{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
     }
   }
   .timestamp {

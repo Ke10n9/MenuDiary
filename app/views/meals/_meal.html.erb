@@ -26,7 +26,11 @@
               <% @meal.dishes.each do |m| %>
                 <%= m.name %><br>
               <% end %>
-              <%= link_to 'Edit', edit_meal_path(@meal) %>
+              <div class="meal-edit">
+                <%= link_to 'Edit', edit_meal_path(@meal) %>
+                /<%= link_to "delete", @meal, method: :delete,
+                                  data: { confirm: "本当に削除しますか？" } %>
+              </div>
             <% end %>
           </div>
         <% end %>
