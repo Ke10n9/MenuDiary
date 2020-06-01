@@ -25,7 +25,7 @@ archer_meal:
 
 <% 30.times do |n| %>
 meal_<%= n %>:
-  date: <%= Time.new(2020, 5, 9)-n %>
+  date: <%= Time.new(2020, 5, 1)-n %>
   eating_time: 3
   user: michael
 <% end %>

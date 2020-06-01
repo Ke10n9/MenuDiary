@@ -4,23 +4,25 @@ class MealsController < ApplicationController
 
 
   def create
-    @meal = Meal.find_by(meal_params)
-    @dish = Dish.find_by(dish_params)
-    @meal = current_user.meals.build(meal_params) if @meal.nil?
-    @dish = current_user.dishes.build(dish_params) if @dish.nil?
-    if @meal.save && @dish.save
-      @menu = @meal.menus.build(dish_id: @dish.id)
-      @menu.save
-      @p_date = Meal.new(meal_params)
+    meal = Meal.find_by(meal_params)
+    dish = Dish.find_by(dish_params)
+    meal.nil? ? @meal = current_user.meals.build(meal_params) : @meal = meal
+    dish.nil? ? @dish = current_user.dishes.build(dish_params) : @dish = dish
+    if @meal.valid? && @dish.valid?
+      @meal.save if meal.nil?
+      @dish.save if dish.nil?
+      menu = @meal.menus.build(dish_id: @dish.id)
+      menu.save
+      # @p_date = Meal.new(meal_params)
       flash[:success] = "メニューを登録しました。"
       redirect_to root_url
     else
-      @meals = current_user.meals.paginate(page: params[:page])
       render 'static_pages/home'
     end
   end
 
   def destroy
+    @meal = Meal.find(params[:id])
     t_menus = Menu.where(meal_id: params[:id])
     t_menus.each do |t|
       if Menu.where.not(meal_id: @meal.id).find_by(dish_id: t.dish_id).nil?
