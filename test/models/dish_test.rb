@@ -4,7 +4,10 @@ class DishTest < ActiveSupport::TestCase
 
   def setup
     @user = users(:michael)
-    @dish = @user.dishes.build(name: "鮭")
+    @other_user = users(:archer)
+    @name = "しゃぶしゃぶ"
+    @other_name = "焼肉"
+    @dish = @user.dishes.build(name: @name)
   end
 
   test "should be valid" do
@@ -23,6 +26,20 @@ class DishTest < ActiveSupport::TestCase
 
   test "name should be at most 30 characters" do
     @dish.name = "a" * 31
+    assert_not @dish.valid?
+  end
+
+  test "combination of name and user should be unique" do
+    duplicate_name = @other_user.dishes.build(name: @name)
+    duplicate_name.save
+    assert @dish.valid?
+    # userのみ重複はOK
+    duplicate_user = @user.dishes.build(name: @other_name)
+    duplicate_user.save
+    assert @dish.valid?
+    # nameとuserの組み合わせが重複はNG
+    duplicate_dish = @user.dishes.build(name: @name)
+    duplicate_dish.save
     assert_not @dish.valid?
   end
 end
