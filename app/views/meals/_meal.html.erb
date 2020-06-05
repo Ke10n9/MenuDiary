@@ -1,5 +1,16 @@
 <li>
   <span class="content">
+    <%= form_with url: {controller: 'static_pages', action: 'home'}, method: :get, local: true do |form| %>
+      <div class="col-md-4 col-xs-4" style="padding-right: 1%">
+        <%= form.date_field :date, value: @date %>
+      </div>
+      <div class="col-md-3 col-xs-3" style="padding-left: 0">
+        〜１週間前まで
+      </div>
+      <div class="col-md-5 col-xs-5">
+        <%= form.submit "表示" %>
+      </div>
+    <% end %>
     <!-- header -->
     <div class="col-xs-1"></div>
     <div class="meal-zone col-xs-11 text-center">
@@ -13,16 +24,16 @@
     <% for num in 0..6 do %>
       <!-- date -->
       <div class="one-date col-xs-1 text-center">
-        <%= (Date.today-num).month.to_s %><br>
+        <%= (@date-num).month.to_s %><br>
         /<br>
-        <%= (Date.today-num).day.to_s %><br>
-        <%= "("+%w(日 月 火 水 木 金 土)[(Date.today-num).wday]+")" %>
+        <%= (@date-num).day.to_s %><br>
+        <%= "("+%w(日 月 火 水 木 金 土)[(@date-num).wday]+")" %>
       </div>
       <!-- menu -->
       <div class="meal-zone col-xs-11">
         <% for t in 1..3 do %>
           <div class="one-meal col-xs-4">
-            <% if @meal = Meal.find_by(date: Date.today-num, eating_time: t) %>
+            <% if @meal = Meal.find_by(date: @date-num, eating_time: t) %>
               <% @meal.dishes.each do |m| %>
                 <%= m.name %><br>
               <% end %>
