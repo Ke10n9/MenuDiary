@@ -1,6 +1,6 @@
 class MealsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy, :edit, :update]
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:destroy, :edit, :update]
 
 
   def create
@@ -12,11 +12,11 @@ class MealsController < ApplicationController
       @meal.save if meal.nil?
       @dish.save if dish.nil?
       menu = @meal.menus.build(dish_id: @dish.id)
-      menu.save
-      # @p_date = Meal.new(meal_params)
-      flash[:success] = "メニューを登録しました。"
+      menu.save ? flash[:success] = "メニューを登録しました。"
+                  : flash[:danger] = "メニューが重複しています。"
       redirect_to root_url
     else
+      params[:date] ? @date = params[:date].to_date : @date = Date.today
       render 'static_pages/home'
     end
   end
@@ -40,25 +40,29 @@ class MealsController < ApplicationController
   end
 
   def update
-    @meal = Meal.find_by(meal_params)
-    err = 0
-    @dishes = dishes_params.keys.each do |dishes_id|
-      menu = Menu.find_by(meal_id: @meal.id, dish_id: dishes_id)
-      dish = Dish.find(dishes_id)
-      dish_menus = Menu.where(dish_id: dishes_id)
-      if dish_menus.count == 1
-        unless dish.update_attributes(dishes_params[dishes_id])
-          err += 1
+    @meal = Meal.find_by(meal_params) #編集するmeal
+    # binding.pry
+    err = 0 #エラー数の初期値
+    @dishes = dishes_params.keys.each do |dishes_id| #@mealのdish分繰り返し
+      dish = Dish.find(dishes_id) #編集前のdishを探す
+      menu = Menu.find_by(meal_id: @meal.id, dish_id: dishes_id) #@mealで編集前dishが含まれるmenu
+      dish_menus = Menu.where(dish_id: dishes_id) #全menuで編集前dishが含まれるもの
+      new_dish = Dish.find_by(name: dishes_params[dishes_id][:name]) #編集後のdishが既にあるか調べる
+      if new_dish.nil? #もしnew_dishが無くて
+        if dish_menus.count == 1 #編集前dishが他のmenuで使われていなければ
+          unless dish.update_attributes(dishes_params[dishes_id])
+            err += 1
+          end
+        elsif dish_menus.count > 1
+          new_dish = current_user.dishes.build(dishes_params[dishes_id])
+          new_dish.save if new_dish.valid?
         end
-      elsif dish_menus.count > 1
-        new_dish = Dish.find_by(name: dishes_params[dishes_id][:name])
-        new_dish = current_user.dishes.build(dishes_params[dishes_id]) if new_dish.nil?
-        if new_dish.save
-          menu.dish_id = new_dish.id
-          menu.save
-        else
-          err += 1
-        end
+      elsif dish != new_dish && dish_menus.count == 1
+        dish.destroy
+      end
+      menu.dish_id = new_dish.id unless new_dish.nil?
+      unless menu.save
+        err += 1
       end
     end
     unless err == 0
@@ -88,5 +92,4 @@ class MealsController < ApplicationController
       @meal = current_user.meals.find_by(id:params[:id])
       redirect_to root_url if @meal.nil?
     end
-
 end
