@@ -1,13 +1,13 @@
 <li>
   <span class="content">
     <%= form_with url: {controller: 'static_pages', action: 'home'}, method: :get, local: true do |form| %>
-      <div class="col-md-4 col-xs-4" style="padding-right: 1%">
+      <div class="col-md-4 col-xs-5" style="padding-right: 1%">
         <%= form.date_field :date, value: @date %>
       </div>
-      <div class="col-md-3 col-xs-3" style="padding-left: 0">
+      <div class="col-md-3 col-xs-4" style="padding-left: 0">
         〜１週間前まで
       </div>
-      <div class="col-md-5 col-xs-5">
+      <div class="col-md-5 col-xs-3">
         <%= form.submit "表示" %>
       </div>
     <% end %>
@@ -23,7 +23,6 @@
     <!-- contents -->
     <% for num in 0..6 do %>
       <!-- date -->
-      <div class="one-row col-xs-12">
       <div class="one-date col-xs-1 text-center">
         <%= (@date-num).month.to_s %><br>
         /<br>
@@ -48,7 +47,6 @@
             <% end %>
           </div>
         <% end %>
-      </div>
       </div>
     <% end %>
   </span>

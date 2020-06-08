@@ -243,36 +243,30 @@ input {
       border-bottom: transparent;
       border-right: transparent;
     }
-    .one-row{
+    .one-date{
       padding: 0;
       // min-height: 150px;
-      // height: auto !important;
-      // height: 150px;
-      .one-date{
-        padding: 0;
-        // min-height: 150px;
-        height: 150px;
-        border: 1px solid #ccc;
-        border-bottom: transparent;
-        border-right: transparent;
-      }
-      .one-meal{
-        padding: 1% 1%;
-        // min-height: 150px;
-        // height: auto !important;
-        height: 150px;
-        border: 1px solid #ccc;
-        border-bottom: transparent;
-        border-right: transparent;
-        position: relative;
-        word-wrap: break-word;
-        overflow-y: scroll;
-        .meal-edit{
-          padding: 0;
-          float: right;
-        }
-      }
+      height: 150px;
+      border: 1px solid #ccc;
+      border-bottom: transparent;
+      border-right: transparent;
     }
+    .one-meal{
+      padding: 1% 1%;
+      // min-height: 150px;
+      // height: auto !important;
+      height: 150px;
+      border: 1px solid #ccc;
+      border-bottom: transparent;
+      border-right: transparent;
+      position: relative;
+      word-wrap: break-word;
+      overflow-y: scroll;
+      .meal-edit{
+        padding: 0;
+        float: right;
+      }
+    }  
   }
   .timestamp {
     color: $gray-light;

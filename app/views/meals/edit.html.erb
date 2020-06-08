@@ -6,7 +6,6 @@
     <section class="menu_form">
       <%= form_for @meal do |f| %>
         <% @dishes.each do |dish| %>
-
           <%= fields_for "dish[]", dish do |di| %>
             <%#= render 'shared/error_messages', object: di.object %>
             <div class="field">
