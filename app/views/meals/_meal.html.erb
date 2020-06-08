@@ -28,7 +28,7 @@
           <%= (@date-num).month.to_s %><br>
           /<br>
           <%= (@date-num).day.to_s %><br>
-          <%= "("+%w(日 月 火 水 木 金 土)[(@date-num).wday]+")" %>
+          <%= %w(日 月 火 水 木 金 土)[(@date-num).wday] %>
         </div>
         <!-- menu -->
         <div class="col-xs-11" style="padding: 0 5px">
