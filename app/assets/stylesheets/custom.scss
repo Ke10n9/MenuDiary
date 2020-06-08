@@ -215,6 +215,25 @@ input {
   }
   .content {
     display: block;
+
+    /*スクロールバー全体*/
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    /*スクロールバーの軌道*/
+    ::-webkit-scrollbar-track {
+      border-radius: 10px;
+      // box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
+    }
+
+    /*スクロールバーの動く部分*/
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 50, .5);
+      border-radius: 10px;
+      // box-shadow:0 0 0 1px rgba(255, 255, 255, .3);
+    }
+
     .meal-zone{
       padding: 0 5px;
     }
@@ -224,24 +243,34 @@ input {
       border-bottom: transparent;
       border-right: transparent;
     }
-    .one-date{
+    .one-row{
       padding: 0;
-      height: 150px;
-      border: 1px solid #ccc;
-      border-bottom: transparent;
-      border-right: transparent;
-    }
-    .one-meal{
-      padding: 1% 1%;
-      height: 150px;
-      border: 1px solid #ccc;
-      border-bottom: transparent;
-      border-right: transparent;
-      position: relative;
-      .meal-edit{
-        position: absolute;
-        right: 0;
-        bottom: 0;
+      // min-height: 150px;
+      // height: auto !important;
+      // height: 150px;
+      .one-date{
+        padding: 0;
+        // min-height: 150px;
+        height: 150px;
+        border: 1px solid #ccc;
+        border-bottom: transparent;
+        border-right: transparent;
+      }
+      .one-meal{
+        padding: 1% 1%;
+        // min-height: 150px;
+        // height: auto !important;
+        height: 150px;
+        border: 1px solid #ccc;
+        border-bottom: transparent;
+        border-right: transparent;
+        position: relative;
+        word-wrap: break-word;
+        overflow-y: scroll;
+        .meal-edit{
+          padding: 0;
+          float: right;
+        }
       }
     }
   }
