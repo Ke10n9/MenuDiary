@@ -1,7 +1,9 @@
 one:
   name: 鮭
   user: michael
+  category: 1 #主菜
 
 two:
   name: サバ
   user: michael
+  category: 1 #主菜

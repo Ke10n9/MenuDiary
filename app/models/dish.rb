@@ -3,5 +3,7 @@ class Dish < ApplicationRecord
   has_many :menus, foreign_key: "dish_id"
   has_many :meals, through: :menus
   validates :user_id, presence: true, uniqueness: { scope: :name }
-  validates :name, presence: true, length: { maximum: 30 }, uniqueness: { scope: :user_id }
+  validates :name, presence: true, length: { maximum: 30 }#,
+            # uniqueness: { scope: [:user_id, :category] }
+  validates :category, presence: true#, uniqueness: { scope: [:user_id, :name] }
 end

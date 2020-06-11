@@ -1,0 +1,15 @@
+<% provide(:title, 'Recommended menu') %>
+<div class="row">
+  <aside class="col-md-4 col-xs-12">
+    <section>
+      <h1>おすすめメニュー</h1>
+    </section>
+  </aside>
+  <div class="col-xs-12">
+    <% @dishes.each do |dish| %>
+      <div class="col-xs-12">
+        <%= dish %>
+      </div>
+    <% end %>
+  </div>
+</div>

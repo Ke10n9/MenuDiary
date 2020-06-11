@@ -47,7 +47,8 @@ class MealsController < ApplicationController
       dish = Dish.find(dishes_id) #編集前のdishを探す
       menu = Menu.find_by(meal_id: @meal.id, dish_id: dishes_id) #@mealで編集前dishが含まれるmenu
       dish_menus = Menu.where(dish_id: dishes_id) #全menuで編集前dishが含まれるもの
-      new_dish = Dish.find_by(name: dishes_params[dishes_id][:name]) #編集後のdishが既にあるか調べる
+      new_dish = Dish.find_by(name: dishes_params[dishes_id][:name],
+                      category: dishes_params[dishes_id][:category]) #編集後のdishが既にあるか調べる
       if new_dish.nil? #もしnew_dishが無くて
         if dish_menus.count == 1 #編集前dishが他のmenuで使われていなければ
           unless dish.update_attributes(dishes_params[dishes_id])
@@ -81,11 +82,11 @@ class MealsController < ApplicationController
     end
 
     def dish_params
-      params.require(:dish).permit(:name)
+      params.require(:dish).permit(:name, :category)
     end
 
     def dishes_params
-      params.permit(dish: :name)[:dish]
+      params.permit(dish: [:name, :category])[:dish]
     end
 
     def correct_user

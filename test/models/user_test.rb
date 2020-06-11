@@ -37,7 +37,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "associated dishes should be destroyed" do
     @user.save
-    @user.dishes.create!(name: dishes(:one).name)
+    @user.dishes.create!(name: "シチュー", category: 1)
     assert_difference 'Dish.count', -1 do
       @user.destroy
     end

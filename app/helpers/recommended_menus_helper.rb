@@ -1,0 +1,2 @@
+module RecommendedMenusHelper
+end

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  get '/recommend', to: 'recommended_menus#show'
+
   resources :meals, only: [:create, :destroy, :edit, :update]
   resources :dishes, only: [:create, :destroy, :edit, :update]
   resources :menus, only: [:create, :destroy, :edit, :update]
