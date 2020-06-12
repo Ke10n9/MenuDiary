@@ -4,12 +4,27 @@
     <section>
       <h1>おすすめメニュー</h1>
     </section>
-  </aside>
-  <div class="col-xs-12">
-    <% @dishes.each do |dish| %>
-      <div class="col-xs-12">
-        <%= dish %>
+    <%= form_with url: {controller: 'recommended_menus', action: 'show'},
+                  method: :get, local: true do |form| %>
+      <div class="col-md-5 col-xs-3">
+        <%= form.select :eating_time, @eating_times, selected: @eating_time %>
+
+      </div>
+      <div class="col-md-5 col-xs-3">
+        <%= form.submit "表示" %>
       </div>
     <% end %>
-  </div>
+    <div class="col-md-8 col-xs-12" style="padding-top: 10px">
+      <% @dishes.each do |dish| %>
+        <div class="col-xs-4">
+          <% dish.each_with_index do |di, index| %>
+            <div class="col-xs-12">
+              <%= index + 1 %>位
+              <%= di %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </aside>
 </div>

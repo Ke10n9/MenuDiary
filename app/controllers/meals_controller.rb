@@ -1,7 +1,7 @@
 class MealsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy, :edit, :update]
   before_action :correct_user, only: [:destroy, :edit, :update]
-
+  before_action :set_dish_category, only: :edit #ApplicationController
 
   def create
     meal = Meal.find_by(meal_params)
@@ -41,7 +41,6 @@ class MealsController < ApplicationController
 
   def update
     @meal = Meal.find_by(meal_params) #編集するmeal
-    # binding.pry
     err = 0 #エラー数の初期値
     @dishes = dishes_params.keys.each do |dishes_id| #@mealのdish分繰り返し
       dish = Dish.find(dishes_id) #編集前のdishを探す

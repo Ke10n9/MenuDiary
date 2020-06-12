@@ -15,8 +15,12 @@
               <div class="col-md-12 col-xs-4">
                 <%= f.hidden_field :eating_time %>
               </div>
-              <div class="col-md-12 col-xs-12">
+              <div class="col-xs-8">
                 <%= di.text_field :name, value: dish.name %>
+              </div>
+              <div class="col-xs-4">
+                <%= di.select :category, @dish_category,
+                                          selected: dish.category %>
               </div>
             </div>
           <% end %>

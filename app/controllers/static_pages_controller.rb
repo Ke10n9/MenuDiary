@@ -1,5 +1,7 @@
 class StaticPagesController < ApplicationController
   before_action :set_initial_date, only: :home
+  before_action :set_dish_category, only: :home #ApplicationController
+  before_action :set_eating_times, only: :home #ApplicationController
 
   def home
     @meal = current_user.meals.build if logged_in?
