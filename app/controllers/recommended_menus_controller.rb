@@ -6,8 +6,9 @@ class RecommendedMenusController < ApplicationController
 
   def show
     dishes = Array.new(3){Array.new()}
-    @eating_time == "" ? meals = current_user.meals.all.order(date: "DESC", eating_time: "DESC")
-                : meals = current_user.meals.where(eating_time: @eating_time).order(date: "DESC")
+      @eating_time == "" ?
+        meals = current_user.meals.all.order(date: "DESC", eating_time: "DESC").limit(270)
+        : meals = current_user.meals.where(eating_time: @eating_time).order(date: "DESC").limit(90)
     if meals
       meals.each do |meal|
         if menus = Menu.where(meal_id: meal.id)
