@@ -15,11 +15,12 @@
       </div>
     <% end %>
     <div class="col-md-8 col-xs-12" style="padding-top: 10px">
-      <% @dishes.each do |dish| %>
+      <% @dishes.each_with_index do |dish, index| %>
         <div class="col-xs-4">
-          <% dish.each_with_index do |di, index| %>
+          【<%= @dish_categories[index+1][0] %>】
+          <% dish.each_with_index do |di, index_sec| %>
             <div class="col-xs-12">
-              <%= index + 1 %>位
+              <%= index_sec + 1 %>位
               <%= di %>
             </div>
           <% end %>
