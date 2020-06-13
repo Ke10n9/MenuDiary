@@ -1,11 +1,12 @@
 <li>
   <span class="content">
-    <%= form_with url: {controller: 'static_pages', action: 'home'}, method: :get, local: true do |form| %>
+    <%= form_with url: {controller: 'static_pages', action: 'home'},
+                                        method: :get, local: true do |form| %>
       <div class="col-md-4 col-xs-5" style="padding-right: 1%">
         <%= form.date_field :date, value: @date %>
       </div>
       <div class="col-md-3 col-xs-4" style="padding-left: 0">
-        〜１週間前
+        〜３０日前
       </div>
       <div class="col-md-5 col-xs-3">
         <%= form.submit "表示" %>
