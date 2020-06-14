@@ -7,7 +7,8 @@
     <%= form_with url: {controller: 'recommended_menus', action: 'show'},
                   method: :get, local: true do |form| %>
       <div class="col-md-5 col-xs-3">
-        <%= form.select :eating_time, @eating_times, selected: @eating_time %>
+        <%= form.select :eating_time, @eating_times, selected: @eating_time,
+                                                          prompt: "（朝昼夕）" %>
 
       </div>
       <div class="col-md-5 col-xs-3">
@@ -17,7 +18,7 @@
     <div class="col-md-8 col-xs-12" style="padding-top: 10px">
       <% @dishes.each_with_index do |dish, index| %>
         <div class="col-xs-4">
-          【<%= @dish_categories[index+1][0] %>】
+          【<%= @dish_categories[index][0] %>】
           <% dish.each_with_index do |di, index_sec| %>
             <div class="col-xs-12">
               <%= index_sec + 1 %>位

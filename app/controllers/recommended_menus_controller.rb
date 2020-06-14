@@ -2,7 +2,7 @@ class RecommendedMenusController < ApplicationController
   before_action :logged_in_user, only: :show
   before_action :set_eating_time, only: :show
   before_action :set_eating_times, only: :show #ApplicationController
-  before_action :set_dish_category, only: :show #ApplicationController
+  before_action :set_dish_categories, only: :show #ApplicationController
 
   def show
     dishes = Array.new(3){Array.new()}

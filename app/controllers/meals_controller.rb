@@ -1,7 +1,8 @@
 class MealsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy, :edit, :update]
   before_action :correct_user, only: [:destroy, :edit, :update]
-  before_action :set_dish_category, only: :edit #ApplicationController
+  before_action :set_dish_categories, only: [:create, :edit, :update] #ApplicationController
+  before_action :set_eating_times, only: :create #ApplicationController
 
   def create
     meal = Meal.find_by(meal_params)

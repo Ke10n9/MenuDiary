@@ -7,13 +7,13 @@
         <%= f.date_field :date, value: Time.now.strftime("%Y-%m-%d") %>
       </div>
       <div class="col-md-12 col-xs-4">
-        <%= f.select :eating_time, @eating_times %>
+        <%= f.select :eating_time, @eating_times, prompt: "（朝昼夕）" %>
       </div>
       <div class="col-xs-9" style="padding-right: 1%">
         <%= i.text_field :name, placeholder:"品名" %>
       </div>
       <div class="col-xs-3" style="padding-left: 0">
-        <%= i.select :category, @dish_categories %>
+        <%= i.select :category, @dish_categories, prompt: "（分類）" %>
       </div>
     </div>
     <div class="pull-right col-xs-5">

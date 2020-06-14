@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   before_action :set_initial_date, only: :home
-  before_action :set_dish_category, only: :home #ApplicationController
+  before_action :set_dish_categories, only: :home #ApplicationController
   before_action :set_eating_times, only: :home #ApplicationController
 
   def home
