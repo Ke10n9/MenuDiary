@@ -1,3 +1,21 @@
 one:
   meal: one
   dish: one
+
+<% for num in 45..266 do %>
+menu_<%= num %>:
+  meal: meal_<%= num %>
+  dish: non_recommend_dish_<%= num % 3 %>
+<% end %>
+
+<% for num in 0..44 do %>
+menu_<%= num %>:
+  meal: meal_<%= num %>
+  dish: dish_<%= num %>
+<% end %>
+
+<% for num in 0..2 do %>
+non_recommend_menu_<%= num %>:
+  meal: non_recommend_meal_<%= num %>
+  dish: non_recommend_dish_<%= num %>
+<% end %>

@@ -7,3 +7,27 @@ two:
   name: サバ
   user: michael
   category: 1 #主菜
+
+<% for num in 0..14 do %>
+dish_<%= num %>:
+  name: dish_<%= num %>
+  user: michael
+  category: 1
+
+dish_<%= num + 15 %>:
+  name: dish_<%= num + 15 %>
+  user: michael
+  category: 2
+
+dish_<%= num + 30 %>:
+  name: dish_<%= num + 30 %>
+  user: michael
+  category: 3
+<% end %>
+
+<% for num in 0..2 do %>
+non_recommend_dish_<%= num %>:
+  name: non_recommend_dish_<%= num %>
+  user: michael
+  category: <%= num + 1 %>
+<% end %>

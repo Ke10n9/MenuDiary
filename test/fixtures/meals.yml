@@ -1,31 +1,40 @@
 one:
-  date: 2020/5/4
-  eating_time: 3
+  date: <%= Date.today-2 %>
+  eating_time: 1
   user: michael
 
 two:
-  date: 2020/5/3
-  eating_time: 2
-  user: michael
-
-three:
-  date: 2020/5/10
+  date: <%= Date.today-2 %>
   eating_time: 2
   user: michael
 
 most_recent:
-  date: 2020/5/10
+  date: <%= Date.today-2 %>
   eating_time: 3
   user: michael
 
 archer_meal:
-  date: 2020/5/1
+  date: <%= Date.today-3 %>
   eating_time: 3
   user: archer
 
-<% 30.times do |n| %>
-meal_<%= n %>:
-  date: <%= Time.new(2020, 5, 1)-n %>
-  eating_time: 3
+# <% 30.times do |n| %>
+# meal_<%= n %>:
+#   date: <%= Time.new(2019, 5, 1)-n %>
+#   eating_time: 3
+#   user: michael
+# <% end %>
+
+<% for num in 0..266 do %>
+meal_<%= num %>:
+  date: <%= Date.today-91+num/3 %>
+  eating_time: <%= 1 + num%3 %>
+  user: michael
+<% end %>
+
+<% for num in 0..2 do %>
+non_recommend_meal_<%= num %>:
+  date: <%= Date.today-92 %>
+  eating_time: <%= num + 1 %>
   user: michael
 <% end %>

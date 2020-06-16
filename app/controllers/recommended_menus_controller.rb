@@ -13,8 +13,8 @@ class RecommendedMenusController < ApplicationController
       meals.each do |meal|
         if menus = Menu.where(meal_id: meal.id)
           menus.each do |menu|
-            dish = current_user.dishes.find(menu.dish_id)
-            dishes[dish.category-1] << dish.name
+            dish = Dish.find(menu.dish_id)
+            dishes[dish.category.to_i-1] << dish.name
           end
         end
       end

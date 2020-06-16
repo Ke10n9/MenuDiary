@@ -4,7 +4,7 @@ class MenuTest < ActiveSupport::TestCase
 
   def setup
     @meal = meals(:two)
-    @other_meal = meals(:three)
+    @other_meal = meals(:most_recent)
     @dish = dishes(:one)
     @other_dish = dishes(:two)
     @menu = Menu.new(meal_id: @meal.id, dish_id: @dish.id)
