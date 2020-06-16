@@ -6,15 +6,15 @@ class RecommendedMenusController < ApplicationController
 
   def show
     dishes = Array.new(3){Array.new()}
-      @eating_time == "" ?
-        meals = current_user.meals.all.order(date: "DESC", eating_time: "DESC").limit(270)
-        : meals = current_user.meals.where(eating_time: @eating_time).order(date: "DESC").limit(90)
+    @eating_time == "" ?
+      meals = current_user.meals.all.order(date: "DESC", eating_time: "DESC").limit(270)
+      : meals = current_user.meals.where(eating_time: @eating_time).order(date: "DESC").limit(90)
     if meals
       meals.each do |meal|
         if menus = Menu.where(meal_id: meal.id)
           menus.each do |menu|
             dish = Dish.find(menu.dish_id)
-            dishes[dish.category.to_i-1] << dish.name
+            dishes[dish.category-1] << dish.name unless dish.category == 4
           end
         end
       end

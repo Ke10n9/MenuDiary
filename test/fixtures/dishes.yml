@@ -25,7 +25,7 @@ dish_<%= num + 30 %>:
   category: 3
 <% end %>
 
-<% for num in 0..2 do %>
+<% for num in 0..3 do %>
 non_recommend_dish_<%= num %>:
   name: non_recommend_dish_<%= num %>
   user: michael

@@ -5,7 +5,7 @@ one:
 <% for num in 45..266 do %>
 menu_<%= num %>:
   meal: meal_<%= num %>
-  dish: non_recommend_dish_<%= num % 3 %>
+  dish: non_recommend_dish_<%= (num+1) % 4 %>
 <% end %>
 
 <% for num in 0..44 do %>
