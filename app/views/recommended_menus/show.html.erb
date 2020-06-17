@@ -2,11 +2,11 @@
 <div class="row">
   <aside class="col-md-4 col-xs-12">
     <section>
-      <h1>おすすめメニュー</h1>
+      <h1>最近食べてないメニュー</h1>
     </section>
     <%= form_with url: {controller: 'recommended_menus', action: 'show'},
                   method: :get, local: true do |form| %>
-      <div class="col-md-5 col-xs-3">
+      <div class="col-md-5 col-xs-5">
         <%= form.select :eating_time, @eating_times, selected: @eating_time,
                                                           prompt: "（朝昼夕）" %>
 
@@ -15,16 +15,18 @@
         <%= form.submit "表示" %>
       </div>
     <% end %>
-    <div class="col-md-8 col-xs-12" style="padding-top: 10px">
+    <div class="col-md-7 col-xs-4"></div>
+    <div class="col-xs-12" style="padding-top: 10px">
       <% @dishes.each_with_index do |dish, index| %>
-        <div class="col-xs-4">
-          【<%= @dish_categories[index][0] %>】
+        <div>
+          ★<%= @dish_categories[index][0] %><br>
           <% dish.each_with_index do |di, index_sec| %>
-            <div class="col-xs-12">
+            <div style="margin: 0px 30px">
               <%= index_sec + 1 %>位
-              <%= di %>
+              <%= di %><br>
             </div>
           <% end %>
+          <br>
         </div>
       <% end %>
     </div>
