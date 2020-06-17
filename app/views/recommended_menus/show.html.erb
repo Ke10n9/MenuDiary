@@ -2,7 +2,7 @@
 <div class="row">
   <aside class="col-md-4 col-xs-12">
     <section>
-      <h1>最近食べてないメニュー</h1>
+      <h1>おすすめメニュー</h1>
     </section>
     <%= form_with url: {controller: 'recommended_menus', action: 'show'},
                   method: :get, local: true do |form| %>
@@ -23,7 +23,7 @@
           <% dish.each_with_index do |di, index_sec| %>
             <div style="margin: 0px 30px">
               <%= index_sec + 1 %>位
-              <%= di %><br>
+              <%= di %>
             </div>
           <% end %>
           <br>

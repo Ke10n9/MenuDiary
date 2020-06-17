@@ -32,9 +32,9 @@ meal_<%= num %>:
   user: michael
 <% end %>
 
-<% for num in 0..2 do %>
-non_recommend_meal_<%= num %>:
-  date: <%= Date.today-92 %>
-  eating_time: <%= num + 1 %>
-  user: michael
-<% end %>
+# <% for num in 0..2 do %>
+# non_recommend_meal_<%= num %>:
+#   date: <%= Date.today-92 %>
+#   eating_time: <%= num + 1 %>
+#   user: michael
+# <% end %>

@@ -20,6 +20,6 @@ class ApplicationController < ActionController::Base
 
     # dishesモデルのcategoryカラムのバリエーションを指定
     def set_dish_categories
-      @dish_categories = [["主菜・丼", 1], ["副菜", 2], ["汁物", 3], ["主食", 4]]
+      @dish_categories = [["主菜", 1], ["副菜", 2], ["汁物", 3], ["主食", 4], ["デザート", 5]]
     end
 end

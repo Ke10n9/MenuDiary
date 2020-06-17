@@ -5,7 +5,7 @@ class RecommendedMenusController < ApplicationController
   before_action :set_dish_categories, only: :show #ApplicationController
 
   def show
-    dishes = Array.new(3){Array.new()}
+    dishes = Array.new(@dish_categories.size){Array.new()}
     @eating_time == "" ?
       meals = current_user.meals.all.order(date: "DESC", eating_time: "DESC").limit(270)
       : meals = current_user.meals.where(eating_time: @eating_time).order(date: "DESC").limit(90)
@@ -14,7 +14,7 @@ class RecommendedMenusController < ApplicationController
         if menus = Menu.where(meal_id: meal.id)
           menus.each do |menu|
             dish = Dish.find(menu.dish_id)
-            dishes[dish.category-1] << dish.name unless dish.category == 4
+            dishes[dish.category-1] << dish.name
           end
         end
       end

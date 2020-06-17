@@ -23,11 +23,21 @@ dish_<%= num + 30 %>:
   name: dish_<%= num + 30 %>
   user: michael
   category: 3
+
+dish_<%= num + 45 %>:
+  name: dish_<%= num + 45 %>
+  user: michael
+  category: 4
+
+dish_<%= num + 60 %>:
+  name: dish_<%= num + 60 %>
+  user: michael
+  category: 5
 <% end %>
 
-<% for num in 0..3 do %>
-non_recommend_dish_<%= num %>:
-  name: non_recommend_dish_<%= num %>
-  user: michael
-  category: <%= num + 1 %>
-<% end %>
+# <% for num in 0..3 do %>
+# non_recommend_dish_<%= num %>:
+#   name: non_recommend_dish_<%= num %>
+#   user: michael
+#   category: <%= num + 1 %>
+# <% end %>
