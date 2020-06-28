@@ -15,9 +15,7 @@ Rails.application.routes.draw do
   get '/recommend', to: 'recommended_menus#show'
 
   resources :meals, only: [:create, :destroy, :edit, :update]
-  resources :dishes, only: [:create, :destroy, :edit, :update] do
-    get :autocomplete_dish_name, on: :collection
-  end
+  resources :dishes, only: [:create, :destroy, :edit, :update]
   resources :menus, only: [:create, :destroy, :edit, :update]
 
 end
