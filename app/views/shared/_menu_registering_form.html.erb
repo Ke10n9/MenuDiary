@@ -3,14 +3,23 @@
     <%= render 'shared/error_messages', object: f.object %>
     <%= render 'shared/error_messages', object: i.object %>
     <div class="field">
-      <div class="col-md-12 col-xs-8">
+      <div class="col-xs-6" style="padding-right: 0">
         <%= f.date_field :date, value: Time.now.strftime("%Y-%m-%d") %>
       </div>
-      <div class="col-md-12 col-xs-4">
-        <%= f.select :eating_time, @eating_times, prompt: "（朝昼夕）" %>
+      <div class="col-xs-6" style="padding: 0 10px">
+        <% @eating_times.each do |time| %>
+          <div class="col-xs-2" style="padding: 0">
+            <%= f.radio_button :eating_time, time[1] %>
+          </div>
+          <div class="col-xs-2" style="padding: 0">
+            <%= f.label :eating_time, time[0], value: time[1] %>
+          </div>
+        <% end %>
       </div>
       <div class="col-xs-9" style="padding-right: 1%">
-        <%= i.text_field :name, placeholder:"品名" %>
+        <%#= i.text_field :name, placeholder:"品名" %>
+        <%= i.autocomplete_field :name, autocomplete_dish_name_dishes_path,
+          placeholder:"品名（入力すると候補を表示）" %>
       </div>
       <div class="col-xs-3" style="padding-left: 0">
         <%= i.select :category, @dish_categories, prompt: "（分類）" %>
