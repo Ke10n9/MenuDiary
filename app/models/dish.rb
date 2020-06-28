@@ -6,5 +6,4 @@ class Dish < ApplicationRecord
   validates :name, presence: true, length: { maximum: 30 }#,
             # uniqueness: { scope: [:user_id, :category] }
   validates :category, presence: true#, uniqueness: { scope: [:user_id, :name] }
-  # scope :scope_name, ->(term) { where("name LIKE ?", "%#{term}%").order(:name) }
 end

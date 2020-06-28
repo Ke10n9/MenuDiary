@@ -11,5 +11,4 @@ class DishesController < ApplicationController
 
   def update
   end
-
 end
