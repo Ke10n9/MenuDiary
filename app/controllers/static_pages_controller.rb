@@ -39,7 +39,7 @@ class StaticPagesController < ApplicationController
       params[:dinner] ? dinner = [params[:dinner]] : dinner = ["1"]
       @dtimes = [breakfast, lunch, dinner]
       @dtimes.each do |dtime|
-        dtime == ["1"] ? dtime << true : dtime << false
+        dtime == ["1"] ? dtime << true : dtime << false #git push test
       end
     end
 end
