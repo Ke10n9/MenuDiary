@@ -2,21 +2,11 @@ class StaticPagesController < ApplicationController
   before_action :set_initial_date, only: :home
   before_action :set_dish_categories, only: :home #ApplicationController
   before_action :set_eating_times, only: :home #ApplicationController
-  before_action :set_display_times, only: :home
 
   def home
     @meal = current_user.meals.build if logged_in?
     @dish = current_user.dishes.build if logged_in?
     @meals = current_user.meals.all if logged_in?
-
-    dtrue_indexes = @dtimes.each_index.select{ |i| @dtimes[i][0] == "1" }
-    @dtrue_names = []
-    @dtrue_ids = []
-    dtrue_indexes.each do |index|
-      @dtrue_names << @eating_times[index][0]
-      @dtrue_ids << @eating_times[index][1]
-    end
-    @dtrue_count = dtrue_indexes.length
   end
 
   def contact
