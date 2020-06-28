@@ -40,6 +40,6 @@ class StaticPagesController < ApplicationController
       @dtimes = [breakfast, lunch, dinner]
       @dtimes.each do |dtime|
         dtime == ["1"] ? dtime << true : dtime << false
-      end
+      end　#test
     end
 end
